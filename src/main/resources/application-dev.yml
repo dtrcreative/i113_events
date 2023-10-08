@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+#Logging
+logging:
+  level:
+    root: info
+  file:
+    name: logs/serv.log
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=event
+    username: postgres
+    password: postgrespw
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+  properties:
+    hibernate:
+      default_schema: event
+  flyway:
+    url: jdbc:postgresql://localhost:5432/postgres
+    user: postgres
+    password: postgrespw
+    default-schema: event
+
+#eureka:
+#  client:
+#    service-url:
+#      default-zone: http://localhost:8761/eureka
+
+instance:
+  status-page-url-path: actuator/info
+  health-check-url-path: actuator/health
+  instance-id: "${spring.application.name}:${random.uuid}"
