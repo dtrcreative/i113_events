@@ -1,19 +1,19 @@
 package com.micro.i113_events.repository;
 
-import com.micro.i113_events.model.entity.EventEntity;
+import com.micro.i113_events.model.entity.BirthdayEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface BirthdayRepository extends JpaRepository<EventEntity, Integer> {
+public interface BirthdayRepository extends JpaRepository<BirthdayEntity, Integer> {
 
-    List<EventEntity> findAll();
+    List<BirthdayEntity> findAll();
 
-    List<EventEntity> findAllByNotifyIsTrue();
+    List<BirthdayEntity> findAllByNotifyIsTrue();
 
-    List<EventEntity> findAllByUserEntity(EventEntity userEntity);
+    List<BirthdayEntity> findAllByUserEntity(BirthdayEntity userEntity);
 
-    void deleteAllByUserEntity(EventEntity userEntity);
+    void deleteAllByUserEntity(BirthdayEntity userEntity);
 
     void deleteById(int id);
 
