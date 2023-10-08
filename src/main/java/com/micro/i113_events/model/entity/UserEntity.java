@@ -19,10 +19,10 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String userName;
+    private String userId;
 
     public UserEntity(String userName){
-        this.userName = userName;
+        this.userId = userName;
     }
 
 }

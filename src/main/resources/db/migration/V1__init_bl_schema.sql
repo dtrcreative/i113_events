@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users
 (
     id        SERIAL PRIMARY KEY,
-    user_name VARCHAR(100) not null unique
+    user_id VARCHAR(100) not null unique
 );
 
 CREATE TABLE IF NOT EXISTS events
