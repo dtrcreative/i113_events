@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @OpenAPIDefinition(info = @Info(title = "Events"))
 public class I113EventsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(I113EventsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(I113EventsApplication.class, args);
+    }
 
 }

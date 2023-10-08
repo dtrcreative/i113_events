@@ -10,17 +10,17 @@ import java.sql.Date;
 @Component
 public class DateCalculator {
 
-    public String countDaysBetweenToday(Date date){
+    public String countDaysBetweenToday(Date date) {
         DateTime today = new DateTime();
         DateTime inputDate = new DateTime(date.getTime());
         DateTime birthday = new DateTime(
                 today.getYear(),
                 inputDate.getMonthOfYear(),
                 inputDate.getDayOfMonth(),
-                0,0);
-        if(birthday.isBefore(today)){
+                0, 0);
+        if (birthday.isBefore(today)) {
             birthday = new DateTime(
-                    today.getYear()+1,
+                    today.getYear() + 1,
                     birthday.getMonthOfYear(),
                     birthday.getDayOfMonth(),
                     0,
@@ -31,7 +31,7 @@ public class DateCalculator {
                 new LocalDate(today),
                 new LocalDate(birthday)).getDays();
 
-        if(test == 366){
+        if (test == 366) {
             return "0";
         }
         return String.valueOf(test);

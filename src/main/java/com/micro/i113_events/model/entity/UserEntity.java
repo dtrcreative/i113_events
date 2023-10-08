@@ -21,7 +21,7 @@ public class UserEntity {
 
     private String userId;
 
-    public UserEntity(String userName){
+    public UserEntity(String userName) {
         this.userId = userName;
     }
 

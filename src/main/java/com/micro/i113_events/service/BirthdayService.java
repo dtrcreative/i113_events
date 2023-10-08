@@ -2,9 +2,7 @@ package com.micro.i113_events.service;
 
 import com.micro.i113_events.exception.EventException;
 import com.micro.i113_events.model.dto.BirthdayDto;
-import com.micro.i113_events.model.dto.EventDto;
 import com.micro.i113_events.model.entity.BirthdayEntity;
-import com.micro.i113_events.model.entity.EventEntity;
 import com.micro.i113_events.model.entity.UserEntity;
 import com.micro.i113_events.repository.BirthdayRepository;
 import com.micro.i113_events.service.converter.BirthdayConverter;

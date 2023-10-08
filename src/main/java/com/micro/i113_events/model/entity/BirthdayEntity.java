@@ -14,7 +14,7 @@ import java.sql.Date;
 @Builder
 @Entity
 @Table(name = "birthdays")
-public class BirthdayEntity implements Comparable<BirthdayEntity>{
+public class BirthdayEntity implements Comparable<BirthdayEntity> {
 
     @Id
     @Column(name = "id")
@@ -32,9 +32,9 @@ public class BirthdayEntity implements Comparable<BirthdayEntity>{
 
     @Override
     public int compareTo(BirthdayEntity o) {
-        if(firstName.equals(o.getFirstName())&&lastName.equals(o.lastName)&&date.getTime()==o.getDate().getTime()){
+        if (firstName.equals(o.getFirstName()) && lastName.equals(o.lastName) && date.getTime() == o.getDate().getTime()) {
             return 0;
-        }else{
+        } else {
             return 1;
         }
     }

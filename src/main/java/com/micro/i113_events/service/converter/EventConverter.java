@@ -1,8 +1,6 @@
 package com.micro.i113_events.service.converter;
 
-import com.micro.i113_events.model.dto.BirthdayDto;
 import com.micro.i113_events.model.dto.EventDto;
-import com.micro.i113_events.model.entity.BirthdayEntity;
 import com.micro.i113_events.model.entity.EventEntity;
 import com.micro.i113_events.service.UserService;
 import com.micro.i113_events.utils.DateCalculator;

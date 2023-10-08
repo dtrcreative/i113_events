@@ -11,7 +11,7 @@ public class EventException extends RuntimeException {
     private final HttpStatus status;
     private Exception cause;
 
-    public EventException(String message, HttpStatus status){
+    public EventException(String message, HttpStatus status) {
         super();
         this.status = status;
         this.message = message;

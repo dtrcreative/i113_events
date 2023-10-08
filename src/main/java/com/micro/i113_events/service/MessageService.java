@@ -2,9 +2,7 @@ package com.micro.i113_events.service;
 
 import com.micro.i113_events.model.MessageDto;
 import org.springframework.context.MessageSource;
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Locale;
 

@@ -1,6 +1,6 @@
 SET search_path TO event;
 
-insert into users(user_name)
+insert into users(user_id)
 values ('master');
 
 insert into birthdays(user_id, first_name, last_name, date, description)
