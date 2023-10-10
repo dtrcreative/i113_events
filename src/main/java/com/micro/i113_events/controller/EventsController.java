@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/i113/api/events/")
+@RequestMapping("api/events/")
 public class EventsController {
 
-    private EventService unitService;
+    private final EventService unitService;
 
     private EventsController(EventService unitService) {
         this.unitService = unitService;
     }
 
     @GetMapping("/all")
-    public List<EventDto> getAllUnits(@RequestHeader(value = "user") String authorization) {
-        return unitService.getAll(authorization);
+    public List<EventDto> getAllUnits(@RequestHeader(value = "UserId") String userId) {
+        return unitService.getAll(userId);
     }
 
     @PostMapping("/")
@@ -37,8 +37,8 @@ public class EventsController {
     }
 
     @DeleteMapping("/")
-    public void deleteAllUnit(@RequestHeader(value = "user") String userName) {
-        unitService.deleteAll(userName);
+    public void deleteAllUnit(@RequestHeader(value = "UserId") String userId) {
+        unitService.deleteAll(userId);
     }
 
 }

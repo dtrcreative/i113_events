@@ -1,14 +1,14 @@
 
 spring:
   application:
-    name: api-panda-service
+    name: api-events-service
   profiles:
     active: dev
-#  security:
-#    oauth2:
-#      resource-server:
-#        jwt:
-#          issuer-uri: http://localhost:28080/realms/i113_realm
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:28080/realms/i113_realm
   messages:
     always-use-message-format: false
     basename: messages/messages
