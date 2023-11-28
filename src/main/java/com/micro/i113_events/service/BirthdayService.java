@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,6 +37,25 @@ public class BirthdayService {
         return converter.convertEntityToDto(entity);
     }
 
+    public int addList(List<BirthdayDto> unitsDtoList) {
+        UserEntity userEntity = userService.findOrCreateUser(unitsDtoList.get(0).getUserId());
+        List<BirthdayEntity> baseEntities = repository.findAllByUserEntity(userEntity);
+        List<BirthdayEntity> inputList = converter.convertDtoToEntities(unitsDtoList);
+        int counter = 0;
+        for (BirthdayEntity inputEntity : inputList) {
+            if(!isExist(baseEntities, inputEntity)){
+                repository.save(inputEntity);
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public void replaceList(List<BirthdayDto> unitsDtoList) {
+        deleteAll(unitsDtoList.get(0).getUserId());
+        repository.saveAllAndFlush(converter.convertDtoToEntities(unitsDtoList));
+    }
+
     public BirthdayDto update(BirthdayDto unitDto) {
         Optional<BirthdayEntity> entity = repository.findById(unitDto.getId());
         if (entity.isPresent()) {
@@ -52,11 +72,24 @@ public class BirthdayService {
         entity.ifPresent(foundedEntity -> repository.delete(foundedEntity));
     }
 
+    public void deleteSelected(List<Integer> selected) {
+        repository.deleteAllById(selected);
+    }
+
     public void deleteAll(String username) {
         UserEntity user = userService.findOrCreateUser(username);
         List<BirthdayEntity> entityList = repository.findAllByUserEntity(user);
         if (entityList.size() > 0) {
             repository.deleteAll(entityList);
         }
+    }
+
+    private boolean isExist(List<BirthdayEntity> inputList, BirthdayEntity inputEntity){
+        for(BirthdayEntity entity: inputList){
+            if(entity.compareTo(inputEntity) == 0){
+                return true;
+            }
+        }
+        return false;
     }
 }

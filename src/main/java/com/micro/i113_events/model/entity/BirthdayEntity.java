@@ -32,7 +32,7 @@ public class BirthdayEntity implements Comparable<BirthdayEntity> {
 
     @Override
     public int compareTo(BirthdayEntity o) {
-        if (firstName.equals(o.getFirstName()) && lastName.equals(o.lastName) && date.getTime() == o.getDate().getTime()) {
+        if (firstName.equals(o.getFirstName()) && lastName.equals(o.getLastName())) {
             return 0;
         } else {
             return 1;

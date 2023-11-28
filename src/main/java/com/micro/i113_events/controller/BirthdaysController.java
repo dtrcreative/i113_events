@@ -25,6 +25,16 @@ public class BirthdaysController {
         return unitService.create(unitDto);
     }
 
+    @PostMapping("/upload-add")
+    public int uploadAndAddJson(@RequestBody List<BirthdayDto> unitsDtoList) {
+       return unitService.addList(unitsDtoList);
+    }
+
+    @PostMapping("/upload-replace")
+    public void uploadAndReplaceJson(@RequestBody List<BirthdayDto> unitsDtoList) {
+        unitService.replaceList(unitsDtoList);
+    }
+
     @PutMapping("/")
     public BirthdayDto updateUnit(@RequestBody BirthdayDto unitDto) {
         return unitService.update(unitDto);
@@ -33,6 +43,11 @@ public class BirthdaysController {
     @DeleteMapping("/{id}")
     public void deleteUnit(@PathVariable("id") int id) {
         unitService.delete(id);
+    }
+
+    @PostMapping("/selected")
+    public void deleteSelected(@RequestBody List<Integer> values) {
+        unitService.deleteSelected(values);
     }
 
     @DeleteMapping("/")

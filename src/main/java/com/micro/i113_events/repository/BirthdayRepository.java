@@ -4,6 +4,7 @@ import com.micro.i113_events.model.entity.BirthdayEntity;
 import com.micro.i113_events.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface BirthdayRepository extends JpaRepository<BirthdayEntity, Integer> {
