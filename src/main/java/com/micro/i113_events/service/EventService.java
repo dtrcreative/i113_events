@@ -2,6 +2,7 @@ package com.micro.i113_events.service;
 
 import com.micro.i113_events.exception.EventException;
 import com.micro.i113_events.model.dto.EventDto;
+import com.micro.i113_events.model.entity.BirthdayEntity;
 import com.micro.i113_events.model.entity.EventEntity;
 import com.micro.i113_events.model.entity.UserEntity;
 import com.micro.i113_events.repository.EventRepository;
@@ -52,6 +53,10 @@ public class EventService {
         entity.ifPresent(foundedEntity -> repository.delete(foundedEntity));
     }
 
+    public void deleteSelected(List<Integer> selected) {
+        repository.deleteAllById(selected);
+    }
+
     public void deleteAll(String username) {
         UserEntity user = userService.findOrCreateUser(username);
         List<EventEntity> entityList = repository.findAllByUserEntity(user);
@@ -59,4 +64,5 @@ public class EventService {
             repository.deleteAll(entityList);
         }
     }
+
 }

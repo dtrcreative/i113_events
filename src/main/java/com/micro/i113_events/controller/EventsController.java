@@ -36,6 +36,11 @@ public class EventsController {
         unitService.delete(id);
     }
 
+    @PostMapping("/selected")
+    public void deleteSelected(@RequestBody List<Integer> values) {
+        unitService.deleteSelected(values);
+    }
+
     @DeleteMapping("/")
     public void deleteAllUnit(@RequestHeader(value = "UserId") String userId) {
         unitService.deleteAll(userId);

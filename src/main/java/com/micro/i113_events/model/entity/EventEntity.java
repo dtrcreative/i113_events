@@ -32,7 +32,7 @@ public class EventEntity  implements Comparable<EventEntity>{
 
     @Override
     public int compareTo(EventEntity o) {
-        if(eventName.equals(o.getEventName())&&date.getTime()==o.getDate().getTime()){
+        if(eventName.equals(o.getEventName())){
             return 0;
         }else{
             return 1;
