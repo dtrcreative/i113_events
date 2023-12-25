@@ -20,7 +20,7 @@ public class UserService {
         if (Optional.ofNullable(userId).isPresent()) {
             return repository.findUserEntityByUserId(userId).orElseGet(() -> repository.save(new UserEntity(userId)));
         }
-        throw new EventException("Please check user name", HttpStatus.BAD_REQUEST);
+        throw new EventException("Missing user id", HttpStatus.BAD_REQUEST);
     }
 
     public List<UserEntity> getAll() {

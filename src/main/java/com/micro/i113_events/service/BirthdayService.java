@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +36,7 @@ public class BirthdayService {
         return converter.convertEntityToDto(entity);
     }
 
-    public int addList(List<BirthdayDto> unitsDtoList) {
+    public int createByListAndCountSuccessful(List<BirthdayDto> unitsDtoList) {
         UserEntity userEntity = userService.findOrCreateUser(unitsDtoList.get(0).getUserId());
         List<BirthdayEntity> baseEntities = repository.findAllByUserEntity(userEntity);
         List<BirthdayEntity> inputList = converter.convertDtoToEntities(unitsDtoList);
@@ -51,9 +50,10 @@ public class BirthdayService {
         return counter;
     }
 
-    public void replaceList(List<BirthdayDto> unitsDtoList) {
-        deleteAll(unitsDtoList.get(0).getUserId());
+    public int replaceListAndCount(List<BirthdayDto> unitsDtoList) {
+        deleteAllUserRelated(unitsDtoList.get(0).getUserId());
         repository.saveAllAndFlush(converter.convertDtoToEntities(unitsDtoList));
+        return unitsDtoList.size();
     }
 
     public BirthdayDto update(BirthdayDto unitDto) {
@@ -76,7 +76,7 @@ public class BirthdayService {
         repository.deleteAllById(selected);
     }
 
-    public void deleteAll(String username) {
+    public void deleteAllUserRelated(String username) {
         UserEntity user = userService.findOrCreateUser(username);
         List<BirthdayEntity> entityList = repository.findAllByUserEntity(user);
         if (entityList.size() > 0) {

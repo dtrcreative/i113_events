@@ -1,4 +1,4 @@
-package com.micro.i113_events.utils;
+package com.micro.i113_events.service.utils;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;

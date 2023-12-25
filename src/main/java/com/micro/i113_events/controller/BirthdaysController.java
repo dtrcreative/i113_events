@@ -20,19 +20,10 @@ public class BirthdaysController {
     public List<BirthdayDto> getAllUnits(@RequestHeader(value = "UserId") String userId) {
         return unitService.getAll(userId);
     }
+
     @PostMapping("/")
     public BirthdayDto createUnit(@RequestBody BirthdayDto unitDto) {
         return unitService.create(unitDto);
-    }
-
-    @PostMapping("/upload-add")
-    public int uploadAndAddJson(@RequestBody List<BirthdayDto> unitsDtoList) {
-       return unitService.addList(unitsDtoList);
-    }
-
-    @PostMapping("/upload-replace")
-    public void uploadAndReplaceJson(@RequestBody List<BirthdayDto> unitsDtoList) {
-        unitService.replaceList(unitsDtoList);
     }
 
     @PutMapping("/")
@@ -52,7 +43,18 @@ public class BirthdaysController {
 
     @DeleteMapping("/")
     public void deleteAllUnit(@RequestHeader(value = "UserId") String userId) {
-        unitService.deleteAll(userId);
+        unitService.deleteAllUserRelated(userId);
     }
+
+    @PostMapping("/upload-add")
+    public int uploadAndAddJson(@RequestBody List<BirthdayDto> unitsDtoList) {
+        return unitService.createByListAndCountSuccessful(unitsDtoList);
+    }
+
+    @PostMapping("/upload-replace")
+    public int uploadWithReplaceJson(@RequestBody List<BirthdayDto> unitsDtoList) {
+        return unitService.replaceListAndCount(unitsDtoList);
+    }
+
 
 }
