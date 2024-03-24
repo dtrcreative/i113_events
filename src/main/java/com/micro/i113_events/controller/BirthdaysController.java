@@ -1,6 +1,7 @@
 package com.micro.i113_events.controller;
 
 import com.micro.i113_events.model.dto.BirthdayDto;
+import com.micro.i113_events.model.dto.EventDto;
 import com.micro.i113_events.service.BirthdayService;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,6 +55,11 @@ public class BirthdaysController {
     @PostMapping("/upload-replace")
     public int uploadWithReplaceJson(@RequestBody List<BirthdayDto> unitsDtoList) {
         return unitService.replaceListAndCount(unitsDtoList);
+    }
+
+    @GetMapping("/alltest")
+    public List<BirthdayDto> getAllUnits() {
+        return unitService.getTodayBirthdaysTest();
     }
 
 

@@ -2,11 +2,14 @@ package com.micro.i113_events.service;
 
 import com.micro.i113_events.exception.EventException;
 import com.micro.i113_events.model.dto.BirthdayDto;
+import com.micro.i113_events.model.dto.EventDto;
 import com.micro.i113_events.model.entity.BirthdayEntity;
+import com.micro.i113_events.model.entity.EventEntity;
 import com.micro.i113_events.model.entity.UserEntity;
 import com.micro.i113_events.repository.BirthdayRepository;
 import com.micro.i113_events.service.converter.BirthdayConverter;
 import lombok.AllArgsConstructor;
+import org.joda.time.LocalDate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -91,5 +94,24 @@ public class BirthdayService {
             }
         }
         return false;
+    }
+
+    public List<BirthdayDto> getTodayBirthdaysTest(){
+        return converter.convertEntitiesToDto(findTodayBirthdays());
+    }
+
+    public ArrayList<BirthdayEntity> findTodayBirthdays(){
+        List<BirthdayEntity> units = repository.findAllByNotifyIsTrue();
+        ArrayList<BirthdayEntity> todayUnits = new ArrayList<>();
+        LocalDate today = new LocalDate();
+        for(BirthdayEntity entity:units){
+            LocalDate date = new LocalDate(entity.getDate());
+            if(today.getMonthOfYear() == date.getMonthOfYear()){
+                if(today.getDayOfMonth() == date.getDayOfMonth()){
+                    todayUnits.add(entity);
+                }
+            }
+        }
+        return todayUnits;
     }
 }

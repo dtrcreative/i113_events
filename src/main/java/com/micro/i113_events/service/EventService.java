@@ -8,12 +8,11 @@ import com.micro.i113_events.model.entity.UserEntity;
 import com.micro.i113_events.repository.EventRepository;
 import com.micro.i113_events.service.converter.EventConverter;
 import lombok.AllArgsConstructor;
+import org.joda.time.LocalDate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -63,6 +62,25 @@ public class EventService {
         if (entityList.size() > 0) {
             repository.deleteAll(entityList);
         }
+    }
+
+    public List<EventDto> getTodayEventsTest(){
+        return converter.convertEntitiesToDto(findTodayEvents());
+    }
+
+    public ArrayList<EventEntity> findTodayEvents(){
+        List<EventEntity> units = repository.findEventEntitiesByNotifyIsTrue();
+        ArrayList<EventEntity> todayUnits = new ArrayList<>();
+        LocalDate today = new LocalDate();
+            for(EventEntity entity:units){
+                LocalDate date = new LocalDate(entity.getDate());
+                if(today.getMonthOfYear() == date.getMonthOfYear()){
+                    if(today.getDayOfMonth() == date.getDayOfMonth()){
+                        todayUnits.add(entity);
+                    }
+                }
+            }
+        return todayUnits;
     }
 
 }

@@ -18,4 +18,6 @@ public interface EventRepository extends JpaRepository<EventEntity, Integer> {
 
     void deleteById(int id);
 
+    List<EventEntity> findEventEntitiesByNotifyIsTrue();
+
 }

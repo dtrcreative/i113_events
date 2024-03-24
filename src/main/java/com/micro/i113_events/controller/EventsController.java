@@ -2,6 +2,7 @@ package com.micro.i113_events.controller;
 
 import com.micro.i113_events.model.dto.EventDto;
 import com.micro.i113_events.service.EventService;
+import com.micro.i113_events.service.sheduler.TelegramShedule;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,9 +12,11 @@ import java.util.List;
 public class EventsController {
 
     private final EventService unitService;
+    private final TelegramShedule shedule;
 
-    private EventsController(EventService unitService) {
+    public EventsController(EventService unitService, TelegramShedule shedule) {
         this.unitService = unitService;
+        this.shedule = shedule;
     }
 
     @GetMapping("/all")
@@ -44,6 +47,11 @@ public class EventsController {
     @DeleteMapping("/")
     public void deleteAllUnit(@RequestHeader(value = "UserId") String userId) {
         unitService.deleteAll(userId);
+    }
+
+    @GetMapping("/alltest")
+    public void getAllUnits() {
+        this.shedule.action();
     }
 
 }

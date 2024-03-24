@@ -2,11 +2,14 @@ package com.micro.i113_events.service.converter;
 
 import com.micro.i113_events.model.dto.BirthdayDto;
 import com.micro.i113_events.model.entity.BirthdayEntity;
+import com.micro.i113_events.model.entity.UserEntity;
 import com.micro.i113_events.service.UserService;
 import com.micro.i113_events.service.utils.DateCalculator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,5 +54,19 @@ public class BirthdayConverter {
                 .notify(inputDTO.isNotify())
                 .description(inputDTO.getDescription())
                 .build();
+    }
+
+    public HashMap<UserEntity, ArrayList<BirthdayEntity>> mapUsersBirthdays(ArrayList<BirthdayEntity> events) {
+        HashMap<UserEntity, ArrayList<BirthdayEntity>> result = new HashMap<>();
+        for (BirthdayEntity entity : events) {
+            if (result.containsKey(entity.getUserEntity())) {
+                result.get(entity.getUserEntity()).add(entity);
+            } else {
+                ArrayList<BirthdayEntity> tempList = new ArrayList<>();
+                tempList.add(entity);
+                result.put(entity.getUserEntity(), tempList);
+            }
+        }
+        return result;
     }
 }

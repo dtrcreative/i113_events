@@ -2,11 +2,14 @@ package com.micro.i113_events.service.converter;
 
 import com.micro.i113_events.model.dto.EventDto;
 import com.micro.i113_events.model.entity.EventEntity;
+import com.micro.i113_events.model.entity.UserEntity;
 import com.micro.i113_events.service.UserService;
 import com.micro.i113_events.service.utils.DateCalculator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +52,20 @@ public class EventConverter {
                 .notify(inputDTO.isNotify())
                 .description(inputDTO.getDescription())
                 .build();
+    }
+
+    public HashMap<UserEntity, ArrayList<EventEntity>> mapUsersEvents(ArrayList<EventEntity> events) {
+        HashMap<UserEntity, ArrayList<EventEntity>> result = new HashMap<>();
+        for (EventEntity entity : events) {
+            if (result.containsKey(entity.getUserEntity())) {
+                result.get(entity.getUserEntity()).add(entity);
+            } else {
+                ArrayList<EventEntity> tempList = new ArrayList<>();
+                tempList.add(entity);
+                result.put(entity.getUserEntity(), tempList);
+            }
+        }
+        return result;
     }
 
 }

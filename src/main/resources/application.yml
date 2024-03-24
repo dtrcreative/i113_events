@@ -1,3 +1,8 @@
+info:
+  app:
+    name: '@project.name@'
+    description: '@project.description@'
+    version: '@project.version@'
 
 spring:
   application:
@@ -14,6 +19,8 @@ spring:
     basename: messages/messages
     encoding: UTF-8
     fallback-to-system-locale: true
+  main:
+    web-application-type:
 
 #Open-api
 springdoc:
@@ -28,7 +35,24 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,metrics,prometheus,loggers
+        include: info, health, metrics, prometheus, loggers
+      base-path: /public/actuator
   metrics:
     enable:
       jvm: true
+  datadog:
+    metrics:
+      export:
+        application-key:
+
+scheduler:
+  interval-in-cron-morning: 0 0 6 * * ?
+  interval-in-cron-evening: 0 0 18 * * ?
+
+services:
+  api: http://localhost:8080/
+  telegram:
+    default-url: /api/telbot/
+    message:
+      headerBirthdays: Today's Birthdays
+      headerEvents: Today's Events
