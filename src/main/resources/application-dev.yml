@@ -1,6 +1,6 @@
 server:
   port: 8085
-
+  ip: localhost
 #Logging
 logging:
   level:
@@ -10,7 +10,7 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=event
+    url: jdbc:postgresql://${server.ip}:5432/postgres?currentSchema=event
     username: postgres
     password: postgrespw
     driver-class-name: org.postgresql.Driver
@@ -21,15 +21,20 @@ spring:
     hibernate:
       default_schema: event
   flyway:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://${server.ip}:5432/postgres
     user: postgres
     password: postgrespw
     default-schema: event
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://${server.ip}:28080/realms/i113_realm
 
 eureka:
   client:
     service-url:
-      default-zone: http://localhost:8761/eureka
+      default-zone: http://${server.ip}:8761/eureka
 
   instance:
     status-page-url-path: api/events/actuator/info
