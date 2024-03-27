@@ -1,15 +1,10 @@
-info:
-  app:
-    name: '@project.name@'
-    description: '@project.description@'
-    version: '@project.version@'
 
 spring:
   application:
     name: api-events-service
   profiles:
-    active: dev
-#    active: prod
+#    active: dev
+    active: prod
 
   messages:
     always-use-message-format: false
