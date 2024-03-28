@@ -1,0 +1,25 @@
+name: cerg-action-process
+env:
+  APPLICATION_NAME : "Events"
+on: 
+  push:
+    branches: 
+      - master
+
+jobs:
+  validating_docker:
+    runs-on: self-hosted
+    
+    steps:
+      - name: PrintAppData
+        run : |
+          echo "Application name: ${{ env.APPLICATION_NAME}}"
+          
+      - name: Checkout
+        uses: actions/checkout@v1     
+
+          
+                 
+        
+
+
