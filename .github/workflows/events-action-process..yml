@@ -1,6 +1,6 @@
 name: events-action-process
 env:
-  APPLICATION_NAME : "Eventstest"
+  APPLICATION_NAME : "Events"
 on: 
   push:
     branches: 
