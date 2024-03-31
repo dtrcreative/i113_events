@@ -16,4 +16,20 @@ jobs:
           echo "Application name: ${{ env.APPLICATION_NAME}}"
           
       - name: Checkout
-        uses: actions/checkout@v1     
+        uses: actions/checkout@v4
+        with: 
+          clean: 'false'
+
+      - name: Maven Events clean-build
+        run : |
+          mvn clean
+          mvn install  
+
+      - name: Docker Events update
+        run : |
+          bash i113_events_update.sh   
+
+      - name: Docker Compose up
+        run : |
+          cd /home/ditar/actions-runner/elli_project_work/
+          docker compose up --detach    
