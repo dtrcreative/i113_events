@@ -41,10 +41,4 @@ scheduler:
   interval-in-cron-morning: 0 0 6 * * ?
   interval-in-cron-evening: 0 0 18 * * ?
 
-services:
-  api: http://localhost:8080/
-  telegram:
-    default-url: /api/telbot/
-    message:
-      headerBirthdays: Today's Birthdays
-      headerEvents: Today's Events
+

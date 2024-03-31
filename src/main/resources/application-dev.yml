@@ -40,3 +40,11 @@ eureka:
     status-page-url-path: api/events/actuator/info
     health-check-url-path: api/events/actuator/health
 #    instance-id: "${spring.application.name}:${random.uuid}"
+
+services:
+  api: http://${server.ip}:8080/
+  telegram:
+    default-url: /api/telbot/
+    message:
+      headerBirthdays: Today's Birthdays
+      headerEvents: Today's Events

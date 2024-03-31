@@ -1,4 +1,4 @@
 FROM openjdk:17 as build
-ARG JAR_FILE=*.jar
+ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} I113EventsApplication.jar
 ENTRYPOINT ["java","-jar","I113EventsApplication.jar"]
