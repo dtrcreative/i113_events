@@ -7,7 +7,7 @@ on:
       - master
 
 jobs:
-  validating_docker:
+  UpdateEventsService:
     runs-on: self-hosted
     
     steps:
