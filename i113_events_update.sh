@@ -7,7 +7,7 @@ echo $image_name
 
 docker --version
 
-if docker ps | grep -- $container_name > /dev/null
+if docker ps -a | grep -- $container_name > /dev/null
 then
     docker stop $container_name
     docker rm $container_name
