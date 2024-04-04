@@ -1,7 +1,5 @@
 package com.micro.i113_events.service.sheduler;
 
-import com.micro.i113_events.controller.EventsController;
-import com.micro.i113_events.model.dto.EventDto;
 import com.micro.i113_events.model.dto.TelegramDto;
 import com.micro.i113_events.model.entity.BirthdayEntity;
 import com.micro.i113_events.model.entity.EventEntity;
@@ -10,7 +8,6 @@ import com.micro.i113_events.service.BirthdayService;
 import com.micro.i113_events.service.EventService;
 import com.micro.i113_events.service.converter.BirthdayConverter;
 import com.micro.i113_events.service.converter.EventConverter;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Component;
@@ -56,7 +53,7 @@ public class TelegramShedule {
         outputList.addAll(prepareEventsDto(eventsMap));
         outputList.addAll(prepareBirthdaysDto(birthdayMap));
 
-        if(outputList.size()>0){
+        if (outputList.size() > 0) {
             sendToTelegram(outputList);
         }
     }
@@ -98,10 +95,10 @@ public class TelegramShedule {
     }
 
 
-    private void sendToTelegram(ArrayList<TelegramDto> dtos){
+    private void sendToTelegram(ArrayList<TelegramDto> dtos) {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<ArrayList<TelegramDto>> request = new HttpEntity<>(dtos);
-        restTemplate.postForObject(api+telegram, request, TelegramDto.class);
+        restTemplate.postForObject(api + telegram, request, TelegramDto.class);
     }
 
 

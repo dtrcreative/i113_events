@@ -22,12 +22,20 @@ public class Scheduler {
 
 //    @Scheduled(cron = "${interval-in-cron-test}")
 //    public void timedTestSheduler() {
-//        action();
+//        telegramShedule.action();
 //    }
 
-//    @Scheduled(fixedRate = 10000)
-//    public void testSheduler() {
-//        action();
+//    The fixedDelay property makes sure that there is a delay of n millisecond between the finish time of an execution of a task and the start time of the next execution of the task.
+//    @Scheduled(fixedRate = 10000) // 1000 = 1 seconds
+//    public void testRateSheduler() {
+//        System.out.println("shedule");
+//        telegramShedule.action();
+//    }
+
+//    The fixedRate property runs the scheduled task at every n millisecond.
+//    @Scheduled(fixedDelay = 1000)
+//    public void testDelaySheduler() {
+//        System.out.println("shedule");
 //    }
 
 
