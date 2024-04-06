@@ -8,6 +8,8 @@ import com.micro.i113_events.service.BirthdayService;
 import com.micro.i113_events.service.EventService;
 import com.micro.i113_events.service.converter.BirthdayConverter;
 import com.micro.i113_events.service.converter.EventConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Component;
@@ -25,6 +27,8 @@ public class TelegramShedule {
 
     private BirthdayConverter birthdayConverter;
     private EventConverter eventConverter;
+
+    private final Logger logger = LoggerFactory.getLogger(Scheduler.class);
 
     @Value("${services.api}")
     private String api;
@@ -52,7 +56,7 @@ public class TelegramShedule {
         ArrayList<TelegramDto> outputList = new ArrayList<>();
         outputList.addAll(prepareEventsDto(eventsMap));
         outputList.addAll(prepareBirthdaysDto(birthdayMap));
-
+        logger.info("TelegramSheduler OutputListSize: " + outputList.size());
         if (outputList.size() > 0) {
             sendToTelegram(outputList);
         }
