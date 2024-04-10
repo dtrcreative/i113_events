@@ -28,14 +28,10 @@ management:
     web:
       exposure:
         include: info, health, metrics, prometheus, loggers
-      base-path: /public/actuator
+      base-path: /api/events/info
   metrics:
     enable:
       jvm: true
-  datadog:
-    metrics:
-      export:
-        application-key:
 
 scheduler:
   interval-in-cron-morning: 0 0 6 * * ?
