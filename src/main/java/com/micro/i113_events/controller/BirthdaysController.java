@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController //needed to Vue
 @RequestMapping("api/events/birthdays")
 public class BirthdaysController {
 

@@ -1,7 +1,7 @@
 SET search_path TO event;
 
 insert into users(user_id)
-values ('1d5fcfd1-afc2-483d-8bd9-0c218e774bca');
+values ('05811434-2cd4-4d0c-ac8d-9b5273a380dc');
 
 insert into birthdays(user_id, first_name, last_name, date, description)
 values (1,'Geralt', 'Rivia', current_timestamp, 'description');
