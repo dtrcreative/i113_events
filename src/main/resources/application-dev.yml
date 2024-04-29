@@ -1,6 +1,7 @@
 server:
-  port: 8085
+  port: 18085
   ip: localhost
+
 #Logging
 logging:
   level:

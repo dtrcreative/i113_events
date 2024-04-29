@@ -3,8 +3,8 @@ spring:
   application:
     name: api-events-service
   profiles:
-    active: dev
-#    active: prod
+#    active: dev
+    active: prod
 
   messages:
     always-use-message-format: false
