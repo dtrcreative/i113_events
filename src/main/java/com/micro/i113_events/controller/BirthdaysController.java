@@ -1,5 +1,6 @@
 package com.micro.i113_events.controller;
 
+import com.micro.i113_events.exception.EventException;
 import com.micro.i113_events.model.dto.BirthdayDto;
 import com.micro.i113_events.model.dto.EventDto;
 import com.micro.i113_events.service.BirthdayService;
